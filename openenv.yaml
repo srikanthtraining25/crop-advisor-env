@@ -1,0 +1,22 @@
+name: "CropAdvisor"
+version: "1.0.0"
+description: "A precision agriculture environment where an agent manages a 180-day crop cycle, balancing irrigation, fertilization, and pest control under dynamic weather to maximize yield and minimize cost."
+
+api:
+  action_type: "crop_advisor_env.models.CropAction"
+  observation_type: "crop_advisor_env.models.CropObservation"
+  state_type: "crop_advisor_env.models.CropState"
+
+tasks:
+  - id: "task_survive_drought"
+    description: "Manage a crop during an extremely dry season by strategically conserving water."
+    parameters:
+      seed: 100
+  - id: "task_ideal_conditions"
+    description: "Maximize yield under near-perfect optimal weather conditions."
+    parameters:
+      seed: 200
+  - id: "task_severe_pests"
+    description: "Battle an aggressive rapid-onset pest infestation to reach maturity safely."
+    parameters:
+      seed: 300
