@@ -163,8 +163,9 @@ def run_task(client: OpenAI, task_id: str, seed: int) -> float:
             if done:
                 break
 
-        # Normalize score to [0, 1]
-        score = max(0.0, min(1.0, env.state.total_reward / 100.0))
+        # Normalize score to (0, 1) — validator rejects exactly 0.0 and 1.0
+        score = env.state.total_reward / 100.0
+        score = min(max(score, 0.01), 0.99)  # clamp to strict (0, 1)
         success = score >= SUCCESS_SCORE_THRESHOLD
 
     except Exception as exc:
