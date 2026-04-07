@@ -1,12 +1,15 @@
 """
 Server entry-point expected by OpenEnv multi-mode deployment.
-
-Re-exports the FastAPI app from the crop_advisor_env package.
 """
 
-from crop_advisor_env.server.app import app, main
+import uvicorn
+from crop_advisor_env.server.app import app
 
-__all__ = ["app", "main"]
+
+def main():
+    """Start the CropAdvisor environment server."""
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
 if __name__ == "__main__":
     main()
