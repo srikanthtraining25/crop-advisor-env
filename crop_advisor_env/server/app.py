@@ -8,6 +8,7 @@ Uses OpenEnv's create_fastapi_app helper to expose the environment
 via standard HTTP/WebSocket endpoints.
 """
 
+import uvicorn
 from openenv.core.env_server import create_fastapi_app
 
 from ..models import CropAction, CropObservation
@@ -16,3 +17,9 @@ from .crop_environment import CropAdvisorEnvironment
 # Create the FastAPI app using OpenEnv's helper
 # Note: create_fastapi_app expects the Environment CLASS, not an instance
 app = create_fastapi_app(CropAdvisorEnvironment, CropAction, CropObservation)
+
+def main():
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+    main()

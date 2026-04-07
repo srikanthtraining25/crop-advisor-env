@@ -15,8 +15,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
 
-# Copy the environment code
+# Copy the environment code, config, and inference script
+COPY pyproject.toml /app/pyproject.toml
 COPY crop_advisor_env/ /app/crop_advisor_env/
+COPY openenv.yaml /app/openenv.yaml
+COPY inference.py /app/inference.py
+
+# Install the crop_advisor_env package so imports resolve
+RUN pip install --no-cache-dir .
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \

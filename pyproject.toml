@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "crop-advisor-env"
@@ -20,6 +20,10 @@ dependencies = [
     "uvicorn>=0.20.0",
     "pydantic>=2.0.0",
 ]
+
+[project.scripts]
+server = "crop_advisor_env.server.app:main"
+
 
 [project.optional-dependencies]
 dev = [
