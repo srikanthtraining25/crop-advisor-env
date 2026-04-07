@@ -20,6 +20,7 @@ COPY pyproject.toml /app/pyproject.toml
 COPY crop_advisor_env/ /app/crop_advisor_env/
 COPY openenv.yaml /app/openenv.yaml
 COPY inference.py /app/inference.py
+COPY server/ /app/server/
 
 # Install the crop_advisor_env package so imports resolve
 RUN pip install --no-cache-dir .
